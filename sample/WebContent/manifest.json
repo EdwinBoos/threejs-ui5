@@ -1,6 +1,6 @@
 {
     "sap.app": {
-        "id": "influenz.de.sample",
+        "id": "influenz.de.threeui5",
         "type": "application",
         "i18n": "i18n/i18n.properties",
         "title": "{{APPLICATION_TEXT}}"
@@ -19,8 +19,8 @@
     },
     "sap.ui5": {
         "resourceRoots": {},
-        "componentName": "influenz.de.sample",
-        "rootView": "influenz.de.sample.view.App",
+        "componentName": "influenz.de.threeui5",
+        "rootView": "influenz.de.threeui5.view.App",
         "dependencies": {
             "libs": {
                 "sap.m": {}
@@ -40,7 +40,7 @@
             "i18n": {
                 "type": "sap.ui.model.resource.ResourceModel",
                 "settings": {
-                    "bundleName": "influenz.de.sample.i18n.i18n"
+                    "bundleName": "influenz.de.threeui5.i18n.i18n"
                 }
             } 
         },
@@ -48,7 +48,7 @@
             "config": {
                 "routerClass": "sap.m.routing.Router",
                 "viewType": "XML",
-                "viewPath": "influenz.de.sample.view",
+                "viewPath": "influenz.de.threeui5.view",
                 "controlId": "appId",
                 "controlAggregation": "pages"
             },

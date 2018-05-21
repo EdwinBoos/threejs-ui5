@@ -25,7 +25,7 @@ gulp.task('sampleTask', () => {
     gulp.src(['WebContent/WEB-INF/web.xml']).pipe(gulp.dest('../sample/WebContent/WEB-INF'));
     gulp.src('./WebContent/util/**') .pipe(babel({presets: ['es2015']})).pipe(gulp.dest('../sample/WebContent/util'));
     gulp.src('./WebContent/Component.js').pipe(babel({presets: ['es2015']})).pipe(gulp.dest('../sample/WebContent/'));
-    gulp.src('./WebContent/controller/**').pipe(babel({presets: ['es2015']})).pipe(gulp.dest('../sample/WebContent/controller')); 
+    gulp.src('./WebContent/controller/**').pipe(babel({presets: ['es2015']})).pipe(gulp.dest('../sample/WebContent/controller'));
     gulp.src([
         './WebContent/**',
         '!./WebContent/controller/**',

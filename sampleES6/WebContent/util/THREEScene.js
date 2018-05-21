@@ -9,7 +9,7 @@ sap.ui.define(
 
         'use strict';
 
-        return Control.extend("influenz.de.sample.util.THREEScene",
+        return Control.extend("influenz.de.threeui5.util.THREEScene",
             {
 
                 metadata: 
@@ -51,26 +51,26 @@ sap.ui.define(
                         
                         objects:
                         {
-                            type : "influenz.de.sample.util.THREEObject",
+                            type : "influenz.de.threeui5.util.THREEObject",
                             multiple : true,
                             singularName : "object" 
                         },
                         camera:
                         {
                             types:  [ 
-                                        "influenz.de.sample.util.THREEPerspectiveCamera", 
-                                        "influenz.de.sample.util.THREECubeCamera"
+                                        "influenz.de.threeui5.util.THREEPerspectiveCamera",
+                                        "influenz.de.threeui5.util.THREECubeCamera"
                                     ],
                                     multiple : false
                         },
                         directionalLight:
                         {
-                            type: "influenz.de.sample.util.THREEDirectionalLight" ,
+                            type: "influenz.de.threeui5.util.THREEDirectionalLight" ,
                             multiple: false
                         },
                         ambientLight:
                         {
-                            type: "influenz.de.sample.util.THREEAmbientLight" ,
+                            type: "influenz.de.threeui5.util.THREEAmbientLight" ,
                             multiple: false
                         },
 

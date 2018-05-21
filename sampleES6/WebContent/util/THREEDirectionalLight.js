@@ -1,13 +1,13 @@
 sap.ui.define(
     [
-        'influenz/de/sample/util/THREEBaseLight',
+        'influenz/de/threeui5/util/THREEBaseLight',
     ],
 
     (THREEBaseLight) => {
 
         'use strict';
 
-        return THREEBaseLight.extend("influenz.de.sample.util.THREEDirectionalLight",
+        return THREEBaseLight.extend("influenz.de.threeui5.util.THREEDirectionalLight",
             {
 
                 metadata: {

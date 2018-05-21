@@ -1,6 +1,6 @@
 sap.ui.define(
     [
-        "influenz/de/sample/controller/SuperController"
+        "influenz/de/threeui5/controller/SuperController"
     ],
 
     SuperController => { "use strict";
@@ -14,7 +14,7 @@ sap.ui.define(
          * Since the methods got added to the child controller's instance, we need to access them with the 'this' keyword.
          *
          */
-        return SuperController.extend("influenz.de.sample.controller.App", { });
+        return SuperController.extend("influenz.de.threeui5.controller.App", { });
 
         
     });

@@ -1,4 +1,4 @@
-<View controllerName="influenz.de.sample.controller.Main" xmlns="sap.m" xmlns:cc="influenz.de.sample.util">
+<View controllerName="influenz.de.threeui5.controller.Main" xmlns="sap.m" xmlns:cc="influenz.de.threeui5.util">
 
     <Page showHeader="false" >
 

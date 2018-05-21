@@ -8,7 +8,7 @@ sap.ui.define([
      (UIComponent, JSONModel, ResourceModel, Router, ODataModel)  => {
 
 
-        return UIComponent.extend("influenz.de.sample.Component", {
+        return UIComponent.extend("influenz.de.threeui5.Component", {
 
 
             metadata: { manifest: "json" },
@@ -33,7 +33,7 @@ sap.ui.define([
                     }
                 );
                 const applicationDataModel = new JSONModel(
-                    { modulePath: $.sap.getModulePath("influenz.de.sample", "") }
+                    { modulePath: $.sap.getModulePath("influenz.de.threeui5", "") }
                 );
 
                 this.setModel(deviceModel, "device");

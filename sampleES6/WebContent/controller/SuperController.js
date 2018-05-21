@@ -9,7 +9,7 @@ sap.ui.define(
         "use strict"; 
 
 
-        return Controller.extend("influenz.de.sample.controller.SuperController", {
+        return Controller.extend("influenz.de.threeui5.controller.SuperController", {
 
 
             handleNavigateBack() { this.getOwnerComponent().navigateBack(); }, 

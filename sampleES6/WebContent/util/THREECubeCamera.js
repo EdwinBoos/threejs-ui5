@@ -1,6 +1,6 @@
 sap.ui.define(
     [
-        'influenz/de/sample/util/THREEBaseCamera',
+        'influenz/de/threeui5/util/THREEBaseCamera',
 
     ],
 
@@ -8,7 +8,7 @@ sap.ui.define(
 
         'use strict';
 
-        return THREEBaseCamera.extend("influenz.de.sample.util.THREECubeCamera",
+        return THREEBaseCamera.extend("influenz.de.threeui5.util.THREECubeCamera",
             {
 
                 metadata:

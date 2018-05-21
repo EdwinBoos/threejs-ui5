@@ -8,7 +8,7 @@ sap.ui.define(
 
         'use strict';
 
-        return Control.extend("influenz.de.sample.util.THREEObject",
+        return Control.extend("influenz.de.threeui5.util.THREEObject",
             {
 
                 metadata: {
