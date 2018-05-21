@@ -14,7 +14,7 @@ sap.ui.define(
 
                     properties:
                     {
-                        
+
                     }
                     
                 },

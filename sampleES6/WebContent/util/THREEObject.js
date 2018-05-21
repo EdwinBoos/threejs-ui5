@@ -13,22 +13,22 @@ sap.ui.define(
 
                 metadata: {
                     
-                    properties: 
+                    properties :
                     {
                     
-                        objFilePath: 
+                        objFilePath :
                         {
                             type: "string",
                         },
-                        objPositionX:
+                        objPositionX :
                         {
                             defaultValue : 0,
                         },
-                        objPositionY:
+                        objPositionY :
                         {
                             defaultValue : 0,
                         },
-                        objPositionZ:
+                        objPositionZ :
                         {
                             defaultValue : 0,
                         }

@@ -15,27 +15,31 @@ sap.ui.define(
          * Since the methods got added to the child controller's instance, we need to access them with the 'this' keyword.
          *
          */
-        SuperController.extend("influenz.de.sample.controller.Main", { 
-
-
-            onInit ()
+        SuperController.extend("influenz.de.sample.controller.Main",
             {
-                this.getRouter().getRoute("defaultRoute").attachPatternMatched(this._handleRouteMatched, this);
-            },
+
+                onInit ()
+                {
+                    this.getRouter().getRoute("defaultRoute").attachPatternMatched(this._handleRouteMatched, this);
+
+                },
 
 
-            handleThreeSceneNextFrame(event) 
-            {
-                
-            },
+                handleThreeSceneNextFrame(event)
+                {
+
+                },
 
 
-            onExit () { this.getEventBus().destroy(); }, 
+                onExit () { this.getEventBus().destroy(); },
 
 
-            _handleRouteMatched (event) {
+                onAfterRendering() { this.getView().byId("threeSceneId").setAlpha(true) },
 
-            },
+
+                _handleRouteMatched (event) {
+
+                },
 
 
            

@@ -1,9 +1,8 @@
+
 sap.ui.define(
     [
         'sap/ui/core/Control',
         'sap/ui/core/HTML',
-        'influenz/de/sample/util/THREEPerspectiveCamera',
-        
     ],
 
     (Control, HTML) => {
@@ -22,18 +21,22 @@ sap.ui.define(
                         height:
                         {
                             defaultValue : 1280,
+                            type : "int"
                         },
                         width:
                         {
                             defaultValue : 720,
+                            type : "int"
                         },
                         antiAlias:
                         {
                             defaultValue : true,
+                            type : "boolean"
                         },
                         alpha:
                         {
-                            defaultValue : true, 
+                            defaultValue : true,
+                            type : "boolean"
                         },
                         
                     },
@@ -46,10 +49,9 @@ sap.ui.define(
                     aggregations: 
                     {
                         
-                        
-                        objects: 
+                        objects:
                         {
-                            type : "influenz.de.sample.util.THREEObject", 
+                            type : "influenz.de.sample.util.THREEObject",
                             multiple : true,
                             singularName : "object" 
                         },
@@ -57,7 +59,7 @@ sap.ui.define(
                         {
                             types:  [ 
                                         "influenz.de.sample.util.THREEPerspectiveCamera", 
-                                        "influenz.de.sample.util.THREECubeCamera" 
+                                        "influenz.de.sample.util.THREECubeCamera"
                                     ],
                                     multiple : false
                         },
@@ -71,31 +73,22 @@ sap.ui.define(
                             type: "influenz.de.sample.util.THREEAmbientLight" ,
                             multiple: false
                         },
-                         
-                        
+
                     },
 
                 },
                 
                 
-                init() 
-                {
-                  
-                },
+                init() { },
                 
                 
                 onBeforeRendering() 
                 {
-                    
-                    this.setAggregation("camera", this.getAggregation("camera")); 
-                    this.setAggregation("ambientLight", this.getAggregation("ambientLight")); 
-                    this.setAggregation("directionalLight", this.getAggregation("directionalLight")); 
+
                     this.scene = new THREE.Scene();
                     this.webGLRenderer = new THREE.WebGLRenderer( { antialias: this.getAntiAlias(), alpha: this.getAlpha() } );
                     this.webGLRenderer.setSize(this.getWidth(), this.getHeight());
-                    this.webGLRenderer.setClearColor(0xffffff, 0); 
-                    this.webGLRenderer.setPixelRatio(window.devicePixelRatio);
-                    
+
                 },
                 
                 
@@ -107,63 +100,56 @@ sap.ui.define(
                 
                 _renderPerFrame() 
                 {
-                    
+
+                    const scene = this.getScene();
                     const camera = this.getAggregation("camera").getCamera();
-                    const scene = this.getScene()
                     const webGLRenderer = this.getWebGLRenderer();
-                    
+
+                    scene.add(this.getAggregation("directionalLight").getDirectionalLight());
+                    scene.add(this.getAggregation("ambientLight").getAmbientLight());
+
                     this.fireNextFrame();
-                    webGLRenderer.render(scene, camera);
                     camera.lookAt(scene.position);
-                    requestAnimationFrame(this._renderPerFrame.bind(this)); 
-                
-                }, 
-                
-                
-                renderer:  
+                    requestAnimationFrame(this._renderPerFrame.bind(this));
+                    webGLRenderer.render(scene, camera);
+
+                },
+
+
+                renderer:
                 {
 
                     render(rendererManager, control) 
                     {
 
-                        const scene = control.getScene();
-                        const loadingManager = new THREE.LoadingManager();
-                        const objLoader = new THREE.OBJLoader(loadingManager);
-                        const htmlCanvas = new HTML().setDOMContent(control.getWebGLRenderer().domElement);
-                        
-                        scene.add(control.getAggregation("ambientLight").getAmbientLight());
-                        scene.add(control.getAggregation("directionalLight").getDirectionalLight());
-                      
+                        const objLoader = new THREE.OBJLoader(new THREE.LoadingManager());
+
                         rendererManager.write("<div");
                         rendererManager.writeControlData(control);
                         rendererManager.write(">");
-                        rendererManager.write("<ul")
+                        rendererManager.write("<ul");
                         rendererManager.write(">");
-                        rendererManager.renderControl(htmlCanvas); 
-                        rendererManager.renderControl(control.getAggregation("camera")) 
-                        rendererManager.renderControl(control.getAggregation("ambientLight")) 
-                        rendererManager.renderControl(control.getAggregation("directionalLight")) 
+                        rendererManager.renderControl(control.getAggregation("camera"));
+                        rendererManager.renderControl(control.getAggregation("ambientLight"));
+                        rendererManager.renderControl(control.getAggregation("directionalLight"));
+                        rendererManager.renderControl(new HTML().setDOMContent(control.getWebGLRenderer().domElement));
                         rendererManager.write("</div>");
 
-                        jQuery.each(control.getObjects(), (x, object) => 
-                        { 
-                            
-                            objLoader.load(object.getObjFilePath(), 
-                            
-                                loadedObject => 
+                        jQuery.each(control.getObjects(), (x, object) =>
+                            objLoader.load(object.getObjFilePath(), loadedObject =>
                                 {
 
-                                    loadedObject.position.x = object.getObjPositionX(); 
+                                    loadedObject.position.x = object.getObjPositionX();
                                     loadedObject.position.z = object.getObjPositionZ();
                                     loadedObject.position.y = object.getObjPositionY();
-    
-                                    scene.add(loadedObject);
-                                    control._renderPerFrame();
+                                    control.getScene().add(loadedObject);
 
                                 }
-                            );
+                            )
+                        );
 
-                        });
+                        control._renderPerFrame();
+
                     }
                 },
             })

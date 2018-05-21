@@ -20,7 +20,7 @@ sap.ui.define(
                 onBeforeRendering()
                 {
 
-                    this.cubeCamera = new THREE.CubeCamera(45, 720 / 1280, 1, 2000); 
+                    this.cubeCamera = new THREE.CubeCamera(45, 720 / 1280, 1, 2000);
                     this.cubeCamera.position.z = this.getCameraPositionZ();
                     this.cubeCamera.position.y = this.getCameraPositionY();
                     this.cubeCamera.position.x = this.getCameraPositionX();

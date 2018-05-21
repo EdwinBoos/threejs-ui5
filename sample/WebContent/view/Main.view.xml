@@ -2,28 +2,28 @@
 
     <Page showHeader="false" >
 
-        <cc:THREEScene height="600" width="1280" webGLAlpha="true" webGLAntiAlias="true"  nextFrame="handleThreeSceneNextFrame">
+        <cc:THREEScene id="threeSceneId" height="580" width="1280" alpha="true" antiAlias="true"  nextFrame="handleThreeSceneNextFrame">
 
             <cc:objects>
 
-                <cc:THREEObject id="webGl3dObjectId1" objFilePath="./resource/Gantry.obj" objPositionX="0" objPositionY="0" objPositionZ="0"/>
-                <cc:THREEObject id="webGl3dObjectId2" objFilePath="./resource/solararray.obj" objPositionX="0" objPositionY="-25" objPositionZ="0"/>  
+                <cc:THREEObject id="webGl3dObjectId1" objFilePath="./resource/Gantry.obj" objPositionX="-3" objPositionY="0" objPositionZ="35"/>
+                <cc:THREEObject id="webGl3dObjectId2" objFilePath="./resource/solararray.obj" objPositionX="0" objPositionY="-25" objPositionZ="0"/>
 
             </cc:objects>
             <cc:camera>
                 
-                <cc:THREEPerspectiveCamera cameraPositionY="10" cameraPositionX="10" cameraPositionZ="75" />
+                <cc:THREEPerspectiveCamera cameraPositionY="30" cameraPositionX="0" cameraPositionZ="80" />
                 
             </cc:camera>
             <cc:directionalLight>
-                
-                <cc:THREEDirectionalLight id="directionalLightId" position1Of3DVector="1" position2Of3DVector="1" position3Of3DVector="0"/>
-                
+
+                <cc:THREEDirectionalLight position1Of3DVector="1" position2Of3DVector="1" position3Of3DVector="0"/>
+
             </cc:directionalLight>
             <cc:ambientLight>
-                
+
                 <cc:THREEAmbientLight color="0x101030" />
-                
+
             </cc:ambientLight>
         </cc:THREEScene>
 
