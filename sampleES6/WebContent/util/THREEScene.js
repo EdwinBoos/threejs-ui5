@@ -86,7 +86,6 @@ sap.ui.define(
 
                     const loadingManager = new THREE.LoadingManager();
                     const objLoader = new THREE.OBJLoader(loadingManager);
-                    const textureLoader = new THREE.TextureLoader(loadingManager);
 
                     this.scene = new THREE.Scene();
                     this.webGLRenderer = new THREE.WebGLRenderer( { antialias: this.getAntiAlias(), alpha: this.getAlpha() } );
@@ -103,16 +102,6 @@ sap.ui.define(
                                 this.getScene().add(loadedObject);
                                 this.getScene().add(this.getAggregation("directionalLight").getDirectionalLight());
                                 this.getScene().add(this.getAggregation("ambientLight").getAmbientLight());
-                                textureLoader.load(object.getTexturePath(), texture => {
-                                    texture.needsUpdate = true;
-
-                                    loadedObject.traverse(child => {
-                                        if (child instanceof THREE.Mesh)
-                                        {
-                                            child.material.map = texture;
-                                        }
-                                    });
-                                });
                             }
                         )
                     );

@@ -2,19 +2,17 @@
 
     <Page showHeader="false" >
 
-        <cc:THREEScene id="threeSceneId" height="850" width="1200" alpha="false" antiAlias="true" nextFrame="handleThreeSceneNextFrame">
+        <cc:THREEScene id="threeSceneId" height="850" width="1200" alpha="true" antiAlias="true" nextFrame="handleThreeSceneNextFrame">
 
             <cc:objects>
 
                 <cc:THREEObject id="threeObjectId1"
-                                texturePath="./resource/metallic-texture.jpg"
                                 objFilePath="./resource/gantry.obj"
                                 objPositionX="-3"
                                 objPositionY="0"
-                                objPositionZ="35"/>
+                                objPositionZ="35"/> 
 
                 <cc:THREEObject id="threeObjectId2"
-                                texturePath="./resource/metallic-texture.jpg"
                                 objFilePath="./resource/solararray.obj"
                                 objPositionX="0"
                                 objPositionY="-25"
