@@ -7,8 +7,7 @@ sap.ui.define(
 
         'use strict';
 
-        return THREEBaseLight.extend("influenz.de.threeui5.util.THREEAmbientLight",
-            {
+        return THREEBaseLight.extend("influenz.de.threeui5.util.THREEAmbientLight", {
 
                 metadata: {
 

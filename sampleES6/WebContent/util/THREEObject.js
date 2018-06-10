@@ -15,7 +15,11 @@ sap.ui.define(
                     
                     properties :
                     {
-                    
+
+                        texturePath :
+                        {
+                            type: "string",
+                        },
                         objFilePath :
                         {
                             type: "string",

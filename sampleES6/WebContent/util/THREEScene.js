@@ -1,4 +1,3 @@
-
 sap.ui.define(
     [
         'sap/ui/core/Control',
@@ -85,28 +84,54 @@ sap.ui.define(
                 onBeforeRendering() 
                 {
 
+                    const loadingManager = new THREE.LoadingManager();
+                    const objLoader = new THREE.OBJLoader(loadingManager);
+                    const textureLoader = new THREE.TextureLoader(loadingManager);
+
                     this.scene = new THREE.Scene();
                     this.webGLRenderer = new THREE.WebGLRenderer( { antialias: this.getAntiAlias(), alpha: this.getAlpha() } );
                     this.webGLRenderer.setSize(this.getWidth(), this.getHeight());
 
+                    jQuery.each(this.getObjects(), (x, object) =>
+                        objLoader.load(object.getObjFilePath(), loadedObject =>
+                            {
+
+                                loadedObject.position.x = object.getObjPositionX();
+                                loadedObject.position.z = object.getObjPositionZ();
+                                loadedObject.position.y = object.getObjPositionY();
+
+                                this.getScene().add(loadedObject);
+                                this.getScene().add(this.getAggregation("directionalLight").getDirectionalLight());
+                                this.getScene().add(this.getAggregation("ambientLight").getAmbientLight());
+                                textureLoader.load(object.getTexturePath(), texture => {
+                                    texture.needsUpdate = true;
+
+                                    loadedObject.traverse(child => {
+                                        if (child instanceof THREE.Mesh)
+                                        {
+                                            child.material.map = texture;
+                                        }
+                                    });
+                                });
+                            }
+                        )
+                    );
                 },
-                
-                
+
+
                 getScene() { return this.scene },
-                
-                
+
+
                 getWebGLRenderer() { return this.webGLRenderer; },
-                
-                
-                _renderPerFrame() 
+
+
+                _renderPerFrame()
                 {
 
                     const scene = this.getScene();
                     const camera = this.getAggregation("camera").getCamera();
                     const webGLRenderer = this.getWebGLRenderer();
 
-                    scene.add(this.getAggregation("directionalLight").getDirectionalLight());
-                    scene.add(this.getAggregation("ambientLight").getAmbientLight());
 
                     this.fireNextFrame();
                     camera.lookAt(scene.position);
@@ -119,10 +144,8 @@ sap.ui.define(
                 renderer:
                 {
 
-                    render(rendererManager, control) 
+                    render(rendererManager, control)
                     {
-
-                        const objLoader = new THREE.OBJLoader(new THREE.LoadingManager());
 
                         rendererManager.write("<div");
                         rendererManager.writeControlData(control);
@@ -134,20 +157,6 @@ sap.ui.define(
                         rendererManager.renderControl(control.getAggregation("directionalLight"));
                         rendererManager.renderControl(new HTML().setDOMContent(control.getWebGLRenderer().domElement));
                         rendererManager.write("</div>");
-
-                        jQuery.each(control.getObjects(), (x, object) =>
-                            objLoader.load(object.getObjFilePath(), loadedObject =>
-                                {
-
-                                    loadedObject.position.x = object.getObjPositionX();
-                                    loadedObject.position.z = object.getObjPositionZ();
-                                    loadedObject.position.y = object.getObjPositionY();
-                                    control.getScene().add(loadedObject);
-
-                                }
-                            )
-                        );
-
                         control._renderPerFrame();
 
                     }

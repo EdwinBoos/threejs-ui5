@@ -3,7 +3,7 @@ sap.ui.define(
         "influenz/de/threeui5/controller/SuperController",
     ],
 
-    (   SuperController ) => { "use strict";
+    ( SuperController ) => { "use strict";
 
 
         /**
@@ -20,6 +20,7 @@ sap.ui.define(
 
                 onInit ()
                 {
+
                     this.getRouter().getRoute("defaultRoute").attachPatternMatched(this._handleRouteMatched, this);
 
                 },
@@ -28,13 +29,14 @@ sap.ui.define(
                 handleThreeSceneNextFrame(event)
                 {
 
+
                 },
 
 
                 onExit () { this.getEventBus().destroy(); },
 
 
-                onAfterRendering() { this.getView().byId("threeSceneId").setAlpha(true) },
+                onAfterRendering() {  },
 
 
                 _handleRouteMatched (event) {
@@ -42,6 +44,5 @@ sap.ui.define(
                 },
 
 
-           
         });
 });
