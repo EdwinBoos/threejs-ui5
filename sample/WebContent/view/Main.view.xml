@@ -10,7 +10,7 @@
                                 objFilePath="./resource/gantry.obj"
                                 objPositionX="-3"
                                 objPositionY="0"
-                                objPositionZ="35"/> 
+                                objPositionZ="35"/>
 
                 <cc:THREEObject id="threeObjectId2"
                                 objFilePath="./resource/solararray.obj"
