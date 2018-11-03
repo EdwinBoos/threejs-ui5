@@ -3,7 +3,7 @@
 
 <img width="700px" src="./img/example.png">
 
-#### Using Threejs the declarative way with controls in sap ui5 
+#### Implementing Threejs custom controls and using them the declarative way in a xml file
 
 
 
