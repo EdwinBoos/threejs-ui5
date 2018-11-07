@@ -1,1 +1,0 @@
-sap.ui.define(['sap/ui/core/Control'],function(Control){'use strict';return Control.extend("influenz.de.threeui5.util.THREEBaseCamera",{metadata:{properties:{cameraPositionX:{defaultValue:10},cameraPositionY:{defaultValue:10},cameraPositionZ:{defaultValue:120}}},getCamera:function getCamera(){},renderer:{},onAfterRendering:{}});});

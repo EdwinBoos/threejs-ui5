@@ -1,0 +1,1 @@
+sap.ui.define(["sap/ui/core/Control"],function(e){"use strict";return e.extend("influenz.de.threeui5.util.THREEBaseLight",{metadata:{properties:{color:{defaultValue:16772829,type:"int"}}},renderer:{}})});

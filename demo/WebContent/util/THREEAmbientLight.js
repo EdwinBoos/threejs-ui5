@@ -1,0 +1,1 @@
+sap.ui.define(["influenz/de/threeui5/util/THREEBaseLight"],function(e){"use strict";return e.extend("influenz.de.threeui5.util.THREEAmbientLight",{metadata:{properties:{}},onBeforeRendering:function(){this.ambientLight=new THREE.AmbientLight(this.getColor())},getAmbientLight:function(){return this.ambientLight},renderer:{render:function(e,t){}},onAfterRendering:{}})});

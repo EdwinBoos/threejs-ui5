@@ -1,0 +1,1 @@
+sap.ui.define(["influenz/de/threeui5/controller/SuperController"],function(e){"use strict";return e.extend("influenz.de.threeui5.controller.App",{})});
