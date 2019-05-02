@@ -1,14 +1,11 @@
-# Threejs + UI5 + custom controls
+# Threejs and UI5
 <h3> Playing around with custom controls in UI5 and the library Threejs <br>
 
 <img width="700px" src="./img/example.png">
 
-#### Implementing Threejs custom controls and using them the declarative way in a xml file
+#### Using Threejs the declarative way without programming
 
 
-
-  
-  
     <cc:THREEScene id="threeSceneId" height="850" width="1200" alpha="true" antiAlias="true" nextFrame="handleThreeSceneNextFrame">
 
            <cc:objects>
