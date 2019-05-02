@@ -1,16 +1,26 @@
 # This UI5 App has been generated with https://github.com/EdwinBoos/generator-appkit
 
+<h3> Getting started with gulpjs </h3>
 
-<h3> It does support features like es6 transpilation, minifying files, xml validation, jsHint, prettier, browserify, and many more.. </h3>
+First we need to install gulp globally 
+```npm install gulp -g ```
 
-# gulpjs - The streaming build system 
-
-
-
-Open up your Terminal, navigate to current folder enter: ```npm install ```
+Next we need to open up the Terminal, navigate to the generated app folder and enter: ```npm install ```
 *  By entering "gulp --tasks" you will see a tree-overview of tasks in your terminal 
 * With "gulp taskname" you can start a predefined task 
 * With "gulp" you will start the default task
+
+We will try to transpile and minify our whole project in es5 back by entering: ```gulp build ```
+
+After this, gulp has created a new folder inside of root folder named build.
+Inside of this folder we have a complete new ui5 application with all neccessary files copied, and all js files minified and translated back in es5 syntax.
+
+The build folder is now ready to run in the browser.
+
+You code or make changes in the root folder in es6, and then build the project, then you need to refresh your browser and the change is there.
+
+If you wan't to let it build automatically when a change happens in es6 folder, there is a watcher task implemented: Type  ```gulp ```
+
 
 Here you see a overview of all the tasks and childtasks:
 
@@ -58,23 +68,23 @@ Here you see a overview of all the tasks and childtasks:
 
 - they will create a new folder in the same directory as the generated app.
 
-   ``` workspace/fooES6 ( generated app ) creates => workspace/foo ```
+   ``` workspace/fooES6 ( generated app ) creates => workspace/fooES6/build ```
    
    
-- transpile tasks will transpile files, create and mirror all folder names within foo, and will put the transpiled file in the correct folder f. ex.:
+- transpile tasks will transpile files, create and mirror all folder names within build, and will put the transpiled file in the correct folder f. ex.:
    
-   ``` workspace/fooES6/WebContent/controller/Main.controller.js create and transpile => workspace/foo/WebContent/controller/Main.controller.js ```<br> 
-   ``` workspace/fooES6/WebContent/util/Enum.js create and transpile => workspace/foo/WebContent/util/Enum.js ``` <br>
-   ``` workspace/fooES6/WebContent/libraries/bundle.js create and transpile => workspace/foo/WebContent/libraries/bundle.js ```  <br>
-   ``` workspace/fooES6/WebContent/Component.js create and transpile => workspace/foo/WebContent/Component.js ``` <br>
+   ``` workspace/fooES6/WebContent/controller/Main.controller.js create and transpile => workspace/fooES6/build/WebContent/controller/Main.controller.js ```<br> 
+   ``` workspace/fooES6/WebContent/util/Enum.js create and transpile => workspace/fooES6/build/WebContent/util/Enum.js ``` <br>
+   ``` workspace/fooES6/WebContent/libraries/bundle.js create and transpile => workspace/fooES6/build/WebContent/libraries/bundle.js ```  <br>
+   ``` workspace/fooES6/WebContent/Component.js create and transpile => workspace/fooES6/build/WebContent/Component.js ``` <br>
    ``` ... ```
 
--  sync task will copy, create and mirror all folder names within foo f. ex.: 
+-  sync task will copy, create and mirror all folder names within build f. ex.: 
  
-   ``` workspace/fooES6/WebContent/view/Main.view.xml create and copy => workspace/foo/WebContent/view/Main.main.xml ```   <br> 
-   ``` workspace/fooES6/WebContent/fragment/Fragment.view.xml copy => workspace/foo/WebContent/fragment/Fragment.main.xml ```   <br> 
-   ``` workspace/fooES6/WebContent/index.html create and copy => workspace/foo/WebContent/index.html ```    <br>
-   ``` workspace/fooES6/WebContent/index.html create and copy => workspace/foo/WebContent/view/index.html ``` <br>
+   ``` workspace/fooES6/WebContent/view/Main.view.xml create and copy => workspace/fooES6/build/WebContent/view/Main.main.xml ```   <br> 
+   ``` workspace/fooES6/WebContent/fragment/Fragment.view.xml copy => workspace/fooES6/build/WebContent/fragment/Fragment.main.xml ```   <br> 
+   ``` workspace/fooES6/WebContent/index.html create and copy => workspace/fooES6/build/WebContent/index.html ```    <br>
+   ``` workspace/fooES6/WebContent/index.html create and copy => workspace/fooES6/build/WebContent/view/index.html ``` <br>
    ``` ... ```
 
 - sync task excludes the copy of all unnecessary files in fooES6 f. ex.:.
@@ -85,18 +95,4 @@ Here you see a overview of all the tasks and childtasks:
    ``` ... ```
 
 
-# browserify - Install modules from NPM, bundle them up, and load them into your app
 
-[Here you go](./WebContent/libraries/README.md)
-
-
-  
-
-# WebContent/util Folder
-
- * FuseUI5.js (Fuzzy search easily with Lists and Tables.)
- * Proxy.js (Fuzzy Search Proxy class for efficiency)
- * Enum.js (Global Enums here)
- * Formatter.js (Formatting your view's bindings)
- * ...and many more
- *    

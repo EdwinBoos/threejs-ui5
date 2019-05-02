@@ -35,27 +35,27 @@ const stylish = require("jshint-stylish");
  * ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
  *
  */
-gulp.task("transpile-uglify", () => {
+gulp.task("transpile-uglify", (done) => {
   gulp
     .src("./WebContent/util/**.js")
     .pipe(babel({ presets: ["es2015"] }))
     .pipe(uglify())
-    .pipe(gulp.dest("../demo/WebContent/util"));
+    .pipe(gulp.dest("./build/WebContent/util"));
   gulp
     .src("./WebContent/control/**.js")
     .pipe(babel({ presets: ["es2015"] }))
     .pipe(uglify())
-    .pipe(gulp.dest("../demo/WebContent/control"));
+    .pipe(gulp.dest("./build/WebContent/control"));
   gulp
     .src("./WebContent/Component.js")
     .pipe(babel({ presets: ["es2015"] }))
     .pipe(uglify())
-    .pipe(gulp.dest("../demo/WebContent/"));
+    .pipe(gulp.dest("./build/WebContent/"));
   gulp
     .src("./WebContent/controller/**.js")
     .pipe(babel({ presets: ["es2015"] }))
     .pipe(uglify())
-    .pipe(gulp.dest("../demo/WebContent/controller"));
+    .pipe(gulp.dest("./build/WebContent/controller"));
   gulp
     .src([
       "./WebContent/libraries/**.js",
@@ -64,27 +64,29 @@ gulp.task("transpile-uglify", () => {
     ])
     .pipe(babel({ presets: ["es2015"] }))
     .pipe(uglify())
-    .pipe(gulp.dest("../demo/WebContent/libraries/"));
+    .pipe(gulp.dest("./build/WebContent/libraries/"));
+
+  done();
 });
 
-gulp.task("transpile-clean", () => {
+gulp.task("transpile-clean", (done) => {
   gulp
     .src("./WebContent/util/**.js")
     .pipe(babel({ presets: ["es2015"] }))
-    .pipe(gulp.dest("../demo/WebContent/util"));
+    .pipe(gulp.dest("./build/WebContent/util"));
   gulp
     .src("./WebContent/control/**.js")
     .pipe(babel({ presets: ["es2015"] }))
-    .pipe(gulp.dest("../demo/WebContent/control"));
+    .pipe(gulp.dest("./build/WebContent/control"));
 
   gulp
     .src("./WebContent/Component.js")
     .pipe(babel({ presets: ["es2015"] }))
-    .pipe(gulp.dest("../demo/WebContent/"));
+    .pipe(gulp.dest("./build/WebContent/"));
   gulp
     .src("./WebContent/controller/**.js")
     .pipe(babel({ presets: ["es2015"] }))
-    .pipe(gulp.dest("../demo/WebContent/controller"));
+    .pipe(gulp.dest("./build/WebContent/controller"));
   gulp
     .src([
       "./WebContent/libraries/**.js",
@@ -92,33 +94,48 @@ gulp.task("transpile-clean", () => {
       "!./WebContent/libraries/RequireLibs.js"
     ])
     .pipe(babel({ presets: ["es2015"] }))
-    .pipe(gulp.dest("../demo/WebContent/libraries/"));
+    .pipe(gulp.dest("./build/WebContent/libraries/"));
+
+   done();
 });
 
-gulp.task("sync", () => {
+gulp.task("sync", (done) => {
   // Copying or mirroring files into new es5 project folder
-  gulp.src([".project"]).pipe(gulp.dest("../demo"));
-  gulp.src([".classpath"]).pipe(gulp.dest("../demo"));
-  gulp.src([".settings/**"]).pipe(gulp.dest("../demo/.settings"));
+  gulp.src([".project"]).pipe(gulp.dest("./build"));
+  gulp.src([".classpath"]).pipe(gulp.dest("./build"));
+  gulp
+    .src([".settings/**"])
+    .pipe(gulp.dest("./build/.settings"));
   gulp
     .src(["WebContent/WEB-INF/web.xml"])
-    .pipe(gulp.dest("../demo/WebContent/WEB-INF"));
+    .pipe(gulp.dest("./build/WebContent/WEB-INF"));
 
   gulp
     .src(["WebContent/fragment/**.xml"])
-    .pipe(gulp.dest("../demo/WebContent/fragment"));
+    .pipe(gulp.dest("./build/WebContent/fragment"));
   gulp
     .src(["WebContent/view/**.xml"])
-    .pipe(gulp.dest("../demo/WebContent/view"));
-  gulp.src(["WebContent/css/**.css"]).pipe(gulp.dest("../demo/WebContent/css"));
+    .pipe(gulp.dest("./build/WebContent/view"));
+  gulp
+    .src(["WebContent/css/**.css"])
+    .pipe(gulp.dest("./build/WebContent/css"));
+  gulp
+    .src(["WebContent/resource/**.obj"])
+    .pipe(gulp.dest("./build/WebContent/resource"));
   gulp
     .src(["WebContent/i18n/**.properties"])
-    .pipe(gulp.dest("../demo/WebContent/i18n"));
-  gulp.src(["WebContent/manifest.json"]).pipe(gulp.dest("../demo/WebContent"));
-  gulp.src(["WebContent/index.html"]).pipe(gulp.dest("../demo/WebContent"));
+    .pipe(gulp.dest("./build/WebContent/i18n"));
+  gulp
+    .src(["WebContent/manifest.json"])
+    .pipe(gulp.dest("./build/WebContent"));
+  gulp
+    .src(["WebContent/index.html"])
+    .pipe(gulp.dest("./build/WebContent"));
+
+   done();
 });
 
-gulp.task("prettier", () => {
+gulp.task("prettier", (done) => {
   gulp
     .src("**.js")
     .pipe(prettier({ singleQuote: false }))
@@ -143,6 +160,8 @@ gulp.task("prettier", () => {
     ])
     .pipe(prettier({ singleQuote: false }))
     .pipe(gulp.dest("WebContent/libraries/"));
+
+    done();
 });
 
 gulp.task("xmlLint", () =>
@@ -163,13 +182,13 @@ gulp.task("jsHint", () =>
     .pipe(jshint.reporter(stylish))
 );
 
-gulp.task("check", ["jsHint", "xmlLint"]);
+gulp.task("check", gulp.series(["jsHint", "xmlLint"]));
 
-gulp.task("build", ["transpile-uglify", "sync"], done => done());
+gulp.task("build", gulp.series(["transpile-uglify", "sync"]));
 
-gulp.task("build-debug", ["transpile-clean", "sync"], done => done());
+gulp.task("build-debug", gulp.series(["transpile-clean", "sync"]));
 
-gulp.task("default", ["build-debug"], () => {
+gulp.task("default", gulp.series(["build-debug"]), () => {
   gulp.watch(
     ["./**", "!./node_modules/**", ".!/WebContent/libraries/node_modules/**"],
     { interval: 500 },

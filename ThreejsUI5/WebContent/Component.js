@@ -17,15 +17,19 @@ sap.ui.define(
 
       navigateBack: () => window.history.go(-1),
 
-      getURLBasedOnWhereTheAppIsStarted() {
-        return window.location.hostname === "localhost"
-          ? this.getMetadata().getConfig().serviceConfigLocal.invoiceRemote
-          : this.getMetadata().getConfig().serviceConfig.invoiceRemote;
+      createURL() {
+        if (window.location.hostname === "localhost") {
+          return this.getMetadata().getConfig().serviceConfigLocal.serviceProxyURL;
+        } else {
+          return (
+            this.getMetadata().getConfig().serviceConfig.serviceURL || ""
+          );
+        }
       },
 
       init() {
         const odataModel = new ODataModel(
-          this.getURLBasedOnWhereTheAppIsStarted()
+          this.createURL()
         );
         const deviceModel = new JSONModel({
           isTouch: sap.ui.Device.support.touch,
@@ -39,7 +43,6 @@ sap.ui.define(
           modulePath: $.sap.getModulePath("influenz.de.threeui5", "")
         });
 
-        odataModel.setUseBatch(false);
         this.setModel(odataModel, "odataModel");
         this.setModel(deviceModel, "device");
         this.setModel(applicationDataModel, "appData");
