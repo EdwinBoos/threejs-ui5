@@ -1,35 +1,35 @@
 sap.ui.define(
-  ["sap/ui/core/Control"],
+ ["sap/ui/core/Control"],
 
-  Control => {
-    "use strict";
+ Control => {
+  "use strict";
 
-    return Control.extend("influenz.de.threeui5.util.THREEObject", {
-      metadata: {
-        properties: {
-          texturePath: {
-            type: "string"
-          },
-          objFilePath: {
-            type: "string"
-          },
-          objPositionX: {
-            defaultValue: 0
-          },
-          objPositionY: {
-            defaultValue: 0
-          },
-          objPositionZ: {
-            defaultValue: 0
-          }
-        }
-      },
+  return Control.extend("influenz.de.threeui5.util.THREEObject", {
+   metadata: {
+    properties: {
+     texturePath: {
+      type: "string"
+     },
+     objFilePath: {
+      type: "string"
+     },
+     objPositionX: {
+      defaultValue: 0
+     },
+     objPositionY: {
+      defaultValue: 0
+     },
+     objPositionZ: {
+      defaultValue: 0
+     }
+    }
+   },
 
-      init() {},
+   init() {},
 
-      renderer: {},
+   renderer: {},
 
-      onAfterRendering: {}
-    });
-  }
+   onAfterRendering: {}
+  });
+ }
 );
